@@ -1,0 +1,39 @@
+@media only screen and (max-width: 600px) {
+
+.title{
+    font-size: 30px;
+    font-family:  Fantasy;
+    text-align: center;
+    color: white; 
+ }
+ 
+ body{
+     background-color: black
+ }
+ 
+ .labels1{
+     color: white;    
+     font-family:  Fantasy;
+ }
+
+ #logout{
+    background-color: white;
+    border-radius: 12px;
+    align-content: center;
+ }
+ #logout{
+    background-color: white;
+    border-radius: 12px;
+    align-content: center;
+ }
+
+ .btn{
+    font-family:  Fantasy;
+}
+}
+
+
+@media only screen and (min-width: 600px) {
+    body {
+        background-color: lightblue;
+    }

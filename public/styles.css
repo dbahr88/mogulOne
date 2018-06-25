@@ -1,0 +1,67 @@
+@media only screen and (max-width: 600px) {
+
+.title{
+   font-size: 20px;
+   font-family:  Fantasy;
+   text-align: center;
+   color: white; 
+}
+
+body{
+    background-color: black
+}
+
+.labels1{
+    color: white;    
+    font-family:  Fantasy;
+
+}
+
+#formLogin{
+    text-align: center;
+}
+
+#btn1{
+    background-color: white;
+    align-content: right;
+    border-radius: 12px;
+
+}
+
+#fblogin{
+    height: 20px;
+    width: 120px;
+    text-align: right;
+    
+}
+}
+
+
+@media only screen and (min-width: 601px) {
+    body {
+        background-color: lightblue;
+    }
+/* /* div#wrapper {
+    width:  55%;
+}
+
+div#submit {
+    width:  55%;
+    margin:  0 auto;
+    margin-left: 7em;
+}
+
+form#formLogin {
+    margin:  o auto;
+}
+
+div#or {
+    width:  55%;
+    margin:  0 auto;
+    margin-left: 5em;
+}
+
+p1.labels1 {
+    text-align:  center;
+    margin-left: 2.5em;
+/*  */

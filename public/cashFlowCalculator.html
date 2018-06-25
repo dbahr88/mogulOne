@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Property Analysis Tool</title>
+    <link href="stylesApp.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+        <a href="index.html"><button id="logout">Logout</button></a>
+        <a href="homePage.html"><button id="logout">Home</button></a>    
+        <h1 class="title"> Payment Calculator </h1>
+    <div class="labels1">
+		<label>Address</label>
+		<input type="text" id="address" value="123 Main St">
+		<br>
+		<label> Home Purchase Price </label>
+		<input type="number" name="price5" id="price5" value=120000>
+		<br>
+		<label>Principal</label>
+        <input type="number" id="principal" value=90000>
+        <br>
+        <label>Years</label>
+        <input type="number" id="years" value=30>
+        <br>
+        <label>Interest Rate </label>
+        <input type="number" id="interest" value=5>
+</div>
+
+
+<br>
+<button id="btn" class="btn">What's my payment?</button>
+<br>
+<br>
+<label class="labels1">Monthly Principal/Interest Payment: $</label>
+<span class="labels1" id="result"></span>
+
+<br><br><br><br><br>
+<div class="labels1">
+	<br>	
+	<label> Monthly Rents </label>
+	<input type="number" name="rents" id="rents" value=3000>
+	<br>
+	<!-- <label> Financing </label>
+	<input type="number" name="Financing" id="Financing" value="600"> -->
+	<br>
+	<label> Utilities/Heat </label>
+	<input type="number" id="utilities" value=150>
+	<br>
+	<label> Property Tax </label>
+	<input type="number" id="prop" value=150>
+	<br>
+	<label> Water/Sewer </label>
+	<input type="number" id="water" value=80>
+	<br>
+	<label> Insurance </label>
+	<input type="number" id="ins" value=120>
+	<br>
+	<label> Maintenance </label>
+	<input type="number" id="maintenance" value=120>
+	<br>
+	<label> Vacancy </label>
+	<input type="number" id="Vacancy" value=95>
+	<br>
+	<br>
+	<button id="btn2"> Evaluate</button>
+	<br><br>
+	<label> Monthly Cash Flows: $</label>
+	<span id="result2"></span>
+	<br><br>
+	<label> Annual Cash Flows: $</label>
+	<span id="result3"></span>
+	<br><br>
+	<label> Cash-On-Cash Return: </label>
+	<span id="result4"></span>
+	<br><br>
+	<label> Cap Rate </label>
+	<span id="result5"></span>
+</div>
+
+<br>
+<button id="btnData" class="btnData">Add To My Database</button>
+<br>
+<br>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="cashFlowCalculator.js"></script>
+</body>
+</html>
