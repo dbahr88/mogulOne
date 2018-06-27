@@ -74,15 +74,15 @@
         <div class="col-lg-4 col-md-6">
             <div class="card">
                 <div class="header">
-                    <h4 class="title">Payment Calculator</h4>
+                    <h4 class="title">Step 1: <br>Payment Calculator</h4>
                 </div>
                 <div class="content">
-                    <form>
+                    <form id="paymentcalc">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Address</label>
-                                    <input type="text" class="form-control border-input" id="address" value="123 Main St">
+                                    <input name="address" id="address" type="text" class="form-control border-input"  value="123 Main St">
                                 </div>
                             </div>
 
@@ -91,8 +91,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Purchase Price</label>
-                                    <input type="number" class="form-control border-input" placeholder="Company" value="120000">
+                                    <label>Home Price</label>
+                                    <input name="price" id="price5" type="number" class="form-control border-input" placeholder="Company" value="200000">
                                 </div>
                             </div>
                       
@@ -101,8 +101,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Principal</label>
-                                    <input type="number" class="form-control border-input" id="principal" value="90000">
+                                    <label>Amount Financed</label>
+                                    <input name="principal" id="principal" type="number" class="form-control border-input"  value="150000">
                                 </div>
                             </div>
                         </div>
@@ -135,63 +135,62 @@
                     </form>
                     <br>
                         <label class="labels1">Monthly Finance Payment: $</label>
-                        <span class="labels1" id="result"></span>
+                        <input class="labels1" id="result"><br>
+                        <label class="labels1">Cash Required for Deal: $</label>
+                        <input name="downpayment" class="labels1" id="cashneeded">
                 </div>
             </div>
         </div>
+
+
+
         <div class="col-lg- col-md-6">
             <div class="card">
                 <div class="header">
-                    <h4 class="title">Cash Flow Projection</h4>
+                    <h4 class="title">Step 2:<br>Quick Investment Analysis (Finance Included)</h4>
                 </div>
-
-
-
-
-                
+                <form type="POST">
                 <div class="content">
-                        <form>
+                        <div id="cashflowcalc">
                                 <div class="row">
                                         <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Address / City</label>
-                                                <input type="text" class="form-control border-input" placeholder="123 Main St" value="">
-                                            </div>
+                                      
                                         </div>
                                     </div>
-                                    
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Rents</label>
-                                        <input type="number" class="form-control border-input"  placeholder="$3000" value="">
+                                        <input name="rents" id="rents" type="number" class="form-control border-input"  placeholder="$2400" value="2400">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Principal/Interest</label>
-                                        <input type="number" class="form-control border-input" placeholder="$350" value="">
-                                    </div>
-                                </div>
+
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Tax</label>
-                                        <input type="number" class="form-control border-input" placeholder="$200" value="">
+                                        <input name="proptax" id="proptax" type="number" class="form-control border-input" placeholder="$200" value="380">
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Management</label>
+                                            <input name="mgmt" id="mgmt" type="number" class="form-control border-input" placeholder="$200" value="150">
+                                        </div>
+                                    </div>
+                                
                             </div>
     
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Water/Sewer</label>
-                                        <input type="number" class="form-control border-input" placeholder="$100" value="">
+                                        <input id="water" type="number" class="form-control border-input" placeholder="$100" value="100">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Heat</label>
-                                        <input type="number" class="form-control border-input" placeholder="$150" value="">
+                                        <label>Utilities</label>
+                                        <input id="utilities" type="number" class="form-control border-input" placeholder="$150" value="250">
                                     </div>
                                 </div>
                             </div>
@@ -201,21 +200,21 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Maintenance</label>
-                                        <input type="number" class="form-control border-input" placeholder="$200" value="">
+                                        <input name="maintenance" id="maintenance" type="number" class="form-control border-input" placeholder="$200" value="250">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Vacancy</label>
-                                        <input type="number" class="form-control border-input" placeholder="$100" value="">
+                                        <input name="vacancy" id="vacancy" type="number" class="form-control border-input" placeholder="$100" value="200">
                                     </div>
                                 </div>
-                                <!-- <div class="col-md-4">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Postal Code</label>
-                                        <input type="number" class="form-control border-input" placeholder="">
+                                        <label>Insurance</label>
+                                        <input name="insurance" id="ins" type="number" class="form-control border-input" value="150">
                                     </div>
-                                </div> -->
+                                </div>
                             </div>
 
 
@@ -224,18 +223,23 @@
 
                         
                         <div class="text-center">
-                            <button type="submit" id="btn2" class="btn btn-info btn-fill btn-wd">Evaluate</button>
-                            <button type="submit" class="btn btn-info btn-fill btn-wd">Add to Database</button>
+                            <button id="btn2" class="btn btn-info btn-fill btn-wd">Evaluate</button>
+                            <button id="btn-add" class="btn btn-info btn-fill btn-wd">Add to Database</button>
 
                         </div>
                         <br><label class="labels1">Monthly Cash Flow: $</label>
-                        <span class="labels1" id="result2"></span>
-                        <br><label class="labels1" id="result4">Cash-on-Cash Return: $</label>
-                        <span class="labels1" id="result2"></span>
+                        <input name="cashflow" class="labels1" id="result2">
+                        <br><label class="labels1">Cash-on-Cash Return(%):</label>
+                        <input name="cashoncash" class="labels1" id="result4">
+                        <br><label class="labels1" id="result4">Annual Cash-on-Cash Return: $</label>
+                        <input name="annualcashoncash" class="labels1" id="result3">
                         <div class="clearfix"></div>
-                    </form>
+                        <br><label class="labels1">Cap Rate(%): </label>
+                        <input name="caprate" class="labels1" id="result5">
+                    </div>
                 </div>
             </div>
+        </form>
         </div>
 
         <div class="content">
@@ -250,19 +254,20 @@
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-striped">
                                     <thead>
-                                        <th>ID</th>
                                     	<th>Address</th>
                                     	<th>Price</th>
                                     	<th>Down <br> Payment</th>
                                         <th>Rents</th>
                                         <th>Property<br>Tax</th>
                                         <th>Utilities</th>
-                                        <th>Cash Flow</th>
+                                        <th>Monthly<br>Cash Flow</th>
+                                        <th>Annual <br>Cash Flows</th>
                                         <th>Cash-on-Cash Return</th>
+                                        <th>Cap Rate</th>
+
                                     </thead>
                                     <tbody>
                                         <tr>
-                                        	<td>1</td>
                                         	<td>155 Benmont Ave</td>
                                         	<td>$160,000</td>
                                         	<td>$40,000</td>
@@ -270,10 +275,11 @@
                                             <td>$400</td>
                                             <td>$350</td>
                                             <td>$968</td>
+                                            <td>$11,432</td>
                                             <td>21%</td>
+                                            <td>14%</td>
                                         </tr>
                                         <tr>
-                                        	<<td>1</td>
                                         	<td>155 Benmont Ave</td>
                                         	<td>$160,000</td>
                                         	<td>$40,000</td>
@@ -281,39 +287,45 @@
                                             <td>$400</td>
                                             <td>$350</td>
                                             <td>$968</td>
+                                            <td>$11,432</td>
                                             <td>21%</td>
+                                            <td>14%</td>
                                         </tr>
                                         <tr>
-                                        	<td>1</td>
                                         	<td>155 Benmont Ave</td>
                                         	<td>$160,000</td>
                                         	<td>$40,000</td>
                                             <td>$3200</td>
                                             <td>$400</td>
-                                            <td>$400</td>
+                                            <td>$350</td>
                                             <td>$968</td>
+                                            <td>$11,432</td>
                                             <td>21%</td>
+                                            <td>14%</td>
                                         </tr>
                                         <tr>
-                                        	<td>4</td>
-                                        	<td>Philip Chaney</td>
-                                        	<td>$38,735</td>
-                                        	<td>Korea, South</td>
-                                        	<td>Overland Park</td>
+                                        	<td>155 Benmont Ave</td>
+                                        	<td>$160,000</td>
+                                        	<td>$40,000</td>
+                                            <td>$3200</td>
+                                            <td>$400</td>
+                                            <td>$350</td>
+                                            <td>$968</td>
+                                            <td>$11,432</td>
+                                            <td>21%</td>
+                                            <td>14%</td>
                                         </tr>
                                         <tr>
-                                        	<td>5</td>
-                                        	<td>Doris Greene</td>
-                                        	<td>$63,542</td>
-                                        	<td>Malawi</td>
-                                        	<td>Feldkirchen in Kärnten</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>6</td>
-                                        	<td>Mason Porter</td>
-                                        	<td>$78,615</td>
-                                        	<td>Chile</td>
-                                        	<td>Gloucester</td>
+                                        	<td>155 Benmont Ave</td>
+                                        	<td>$160,000</td>
+                                        	<td>$40,000</td>
+                                            <td>$3200</td>
+                                            <td>$400</td>
+                                            <td>$350</td>
+                                            <td>$968</td>
+                                            <td>$11,432</td>
+                                            <td>21%</td>
+                                            <td>14%</td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -68,200 +68,121 @@
 
             </div>
         </nav>
-
         <div class="col-lg-12 col-md-12">
             <div class="card">
                 <div class="header">
                     <h4 class="title">Tenants Lease Timeline</h4>
+                    <a href="/addtenant"><button>Add Tenant</button></a>
                 </div>
                 <div class="content">
-                    <form>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Tenant</label>
-                                    <input type="email" class="form-control border-input" placeholder="Email" value="John Stamos">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>Address</label>
-                                    <input type="text" class="form-control border-input"  placeholder="Company" value="111 River St">
-                                </div>
-                            </div>
-                            <div class="col-md-1">
-                                <div class="form-group">
-                                    <label>Apartment</label>
-                                    <input type="text" class="form-control border-input" placeholder="Username" value="Unit 1">
-                                </div>
-                            </div>
-                        
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Start Date</label>
-                                    <input type="email" class="form-control border-input" placeholder="Email" value="November 1, 2018">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">End Date</label>
-                                    <input type="email" class="form-control border-input" placeholder="Email" value="October 31, 2019">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <br><button type="submit" class="btn btn-info ">Update</button>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="content">
+                                <div id="tenantentry">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Tenant</label>
+                                                    <input type="email" class="form-control border-input" placeholder="Email" value="John Stamos">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label>Address</label>
+                                                    <input type="text" class="form-control border-input"  placeholder="Company" value="67 Pine St.">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label>Apartment</label>
+                                                    <input type="text" class="form-control border-input" placeholder="Username" value="1">
+                                                </div>
+                                            </div>
+                                        
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">E-Mail</label>
+                                                    <input type="email" class="form-control border-input" placeholder="Email" value="stamos@cool.com">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">End Date</label>
+                                                    <input type="email" class="form-control border-input" placeholder="end date" value="Mon July 31">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                    <div class="form-group">
+        
+                                                <form method="POST" action= "">
+                                                <button class="btn btn-info ">Delete</button>
+                                                </form> 
+                                                </div>
+                                                <!-- <div class="form-group">
+                                                    <br><button type="submit" class="btn btn-info ">Update</button>
+                                                </div> -->
+                                            </div>
+                                        </div>
+                
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                              <span class="sr-only">60% Complete (danger)</span>
+                                            </div>
+                                          </div>
+                                <% for(i in rows) { %>
+                                <div id="tenantentry">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Tenant</label>
+                                            <input type="email" class="form-control border-input" placeholder="Email" value="<%=rows[i].dataValues.name%>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Address</label>
+                                            <input type="text" class="form-control border-input"  placeholder="Company" value="<%=rows[i].dataValues.addressten%>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Apartment</label>
+                                            <input type="text" class="form-control border-input" placeholder="Username" value="<%=rows[i].dataValues.unit%>">
+                                        </div>
+                                    </div>
+                                
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">E-Mail</label>
+                                            <input type="email" class="form-control border-input" placeholder="Email" value="<%=rows[i].dataValues.email%>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">End Date</label>
+                                            <input type="email" class="form-control border-input" placeholder="end date" value="<%=rows[i].dataValues.leaseend%>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                            <div class="form-group">
 
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                              <span class="sr-only">40% Complete (success)</span>
-                            </div>
-                          </div>
+                                        <form method="POST" action= "/delete/<%=rows[i].dataValues.id %>">
+                                        <button class="btn btn-info ">Delete</button>
+                                        </form> 
+                                        </div>
+                                        <!-- <div class="form-group">
+                                            <br><button type="submit" class="btn btn-info ">Update</button>
+                                        </div> -->
+                                    </div>
+                                </div>
+        
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                      <span class="sr-only">40% Complete (danger)</span>
+                                    </div>
+                                  </div>
+                                  <%} %>
+                                </div>
 
-                          <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Tenant</label>
-                                    <input type="email" class="form-control border-input" placeholder="Email" value="John Stamos">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>Address</label>
-                                    <input type="text" class="form-control border-input"  placeholder="Company" value="111 River St">
-                                </div>
-                            </div>
-                            <div class="col-md-1">
-                                <div class="form-group">
-                                    <label>Apartment</label>
-                                    <input type="text" class="form-control border-input" placeholder="Username" value="Unit 1">
-                                </div>
-                            </div>
-                        
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Start Date</label>
-                                    <input type="email" class="form-control border-input" placeholder="Email" value="November 1, 2018">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">End Date</label>
-                                    <input type="email" class="form-control border-input" placeholder="Email" value="October 31, 2019">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <br><button type="submit" class="btn btn-info ">Update</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                              <span class="sr-only">20% Complete</span>
-                            </div>
-                          </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Tenant</label>
-                                    <input type="email" class="form-control border-input" placeholder="Email" value="John Stamos">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>Address</label>
-                                    <input type="text" class="form-control border-input"  placeholder="Company" value="111 River St">
-                                </div>
-                            </div>
-                            <div class="col-md-1">
-                                <div class="form-group">
-                                    <label>Apartment</label>
-                                    <input type="text" class="form-control border-input" placeholder="Username" value="Unit 1">
-                                </div>
-                            </div>
-                        
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Start Date</label>
-                                    <input type="email" class="form-control border-input" placeholder="Email" value="November 1, 2018">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">End Date</label>
-                                    <input type="email" class="form-control border-input" placeholder="Email" value="October 31, 2019">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <br><button type="submit" class="btn btn-info ">Update</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                              <span class="sr-only">60% Complete (warning)</span>
-                            </div>
-                          </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Tenant</label>
-                                    <input type="email" class="form-control border-input" placeholder="Email" value="John Stamos">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>Address</label>
-                                    <input type="text" class="form-control border-input"  placeholder="Company" value="111 River St">
-                                </div>
-                            </div>
-                            <div class="col-md-1">
-                                <div class="form-group">
-                                    <label>Apartment</label>
-                                    <input type="text" class="form-control border-input" placeholder="Username" value="Unit 1">
-                                </div>
-                            </div>
-                        
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Start Date</label>
-                                    <input type="email" class="form-control border-input" placeholder="Email" value="November 1, 2018">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">End Date</label>
-                                    <input type="email" class="form-control border-input" placeholder="Email" value="October 31, 2019">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <br><button type="submit" class="btn btn-info ">Update</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                              <span class="sr-only">80% Complete (danger)</span>
-                            </div>
-                          </div>
-                        
-                            
-                        
-                        <div class="clearfix"></div>
-                    </form>
                 </div>
-            </div>
-        </div>
-
-            
-
-    
 
     </div>
 </div>

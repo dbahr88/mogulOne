@@ -37,24 +37,35 @@ const sequelize = new Sequelize('mogulone', postgres_user, postgres_pass, {
 	}
 })
 
+// ========DEFINE ALL TABLES===============
 
-// User Talbe
-const User = sequelize.define('user', {
-	fname: Sequelize.STRING,
-	lname: Sequelize.STRING,
-	username: Sequelize.STRING,
-	password: Sequelize.STRING,
-	email: Sequelize.STRING,
-})
 
-// // Prospective Talbe
-// const Portfolio = sequelize.define('prospective', {
+
+
+// User Table
+// const User = sequelize.define('user', {
 // 	fname: Sequelize.STRING,
 // 	lname: Sequelize.STRING,
 // 	username: Sequelize.STRING,
 // 	password: Sequelize.STRING,
 // 	email: Sequelize.STRING,
 // })
+
+// ======Prospective properties table====(database collumn names)
+const Prospective = sequelize.define('prospective', {
+	address: Sequelize.STRING,
+	price: Sequelize.INTEGER,
+	downpayment: Sequelize.INTEGER,
+	financing: Sequelize.INTEGER,
+	proptax: Sequelize.INTEGER,
+	insurance: Sequelize.INTEGER,
+	rents: Sequelize.INTEGER,
+	utilities: Sequelize.INTEGER,
+	maintenance: Sequelize.INTEGER,
+	cashflow: Sequelize.INTEGER,
+	cashoncash: Sequelize.INTEGER,
+	caprate: Sequelize.INTEGER
+})
 
 // // Portfolio Talbe
 // const Portfolio = sequelize.define('portfolio', {
@@ -64,6 +75,25 @@ const User = sequelize.define('user', {
 // 	password: Sequelize.STRING,
 // 	email: Sequelize.STRING,
 // })
+
+// Tenants Table
+const Tenant = sequelize.define('tenant',
+    {
+        name: Sequelize.STRING,
+        addressten: Sequelize.STRING,
+        unit: Sequelize.STRING,
+		leaseend: Sequelize.DATE,
+		email: Sequelize.STRING,
+		phone: Sequelize.STRING
+})
+
+
+
+
+// Prospective.findAll().then((prospective)=>{
+//     console.log(prospective[0].dataValues.name)
+// })
+
 
 // ---------------------------------------------------------
 // =======Photo storage in SQL - Defining the Table=========
@@ -175,12 +205,12 @@ function processSignupCallback(req, username, password, done) {
 	app.use(express.static('public'))
 	app.use(cookieParser());
 
-	app.use(session({ 
-		secret: 'keyboard cat', 
-		store: sessionStore,
-		resave: false, 
-		saveUninitialized: false 
-	}));
+	// app.use(session({ 
+	// 	secret: 'keyboard cat', 
+	// 	store: sessionStore,
+	// 	resave: false, 
+	// 	saveUninitialized: false 
+	// }));
 
 // ---------------------------------------------------------
 //================ Passport Middleware ==============
@@ -236,7 +266,14 @@ app.get('/performance', (req,res)=>{
 })
 
 app.get('/tenants', (req,res)=>{
-	return res.render('tenants')
+	Tenant.findAll()
+	.then((rows)=>{
+		return res.render('tenants', {rows})
+    })
+})
+
+app.get('/addtenant',(req,res)=>{
+	return res.render('addtenant')
 })
 
 app.get('/table', (req,res)=>{
@@ -267,12 +304,84 @@ app.get('/prospective', (req, res)=>{
 	return res.render('prospective')
 })
 
+app.post('/add',(req,res)=>{
+	console.log(req.body)
+	// =========ADD RECORDS to the table======
+	sequelize.sync()
+	.then(()=> Prospective.create({
+    address: req.body.address,
+	price: req.body.price,
+	downpayment: req.body.downpayment,
+    financing: req.body.financing, 
+	proptax: req.body.proptax,
+	insurance: req.body.insurance,
+	rents: req.body.rents,
+	water: req.body.water,
+	utilities: req.body.utilities,
+	maintenance: req.body.maintenance,
+	cashflow: req.body.cashflow,
+	cashoncash:req.body.cashoncash,
+	caprate:req.body.caprate,
+}))
+})
+
 app.get('/paymentCalc', (req, res)=>{
 	return res.render('paymentCalc')
 })
 
+// ADD RECORDS check for the table, then add a record
+sequelize.sync()
+// .then(() => Tenant.create({
+//     name: 'name',
+//     addressten: 'addressten',
+//     unit: '1',
+// 	leaseend: 'leaseend',
+// 	email: 'email',
+// 	phone: 'phone',
+// }))
+// Find all
 
 
+app.get('/tenants',(req,res)=>{
+    Tenant.findAll()
+    .then((rows)=>{
+        return rows;
+    })
+    .then((rows)=>{
+        return res.render('tenants',{rows})
+    })
+})
+
+// ADD tenant record to the table
+app.post('/addten', (req,res)=>{
+    Tenant.create({
+        name: req.body.name,
+        addressten: req.body.addressten,
+        unit: req.body.unit,
+		leaseend: req.body.leaseend,
+		email: req.body.email,
+		phone: req.body.phone,
+	})
+	.then(row=>{
+		return res.redirect('/tenants')
+	})
+})	
+
+// DELETE tenant record
+app.post('/delete/:id', (req,res)=>{
+    let id = req.params.id
+// find the record you want deleted
+    Tenant.findById(id)
+//    use 'destroy' method to delete
+    .then(row => row.destroy())
+    .then(()=>{
+        return res.redirect('/tenants')
+    })
+
+    .then(row=>{
+        return res.redirect('/tenants')
+    })
+})
 
 
  // ---------------------------------------------------------

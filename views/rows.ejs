@@ -1,0 +1,31 @@
+    <div>
+        <h1>Tenants</h1>
+        <% for(i in rows) { %>
+        <fieldset>
+            <label>Name: </label><%=rows[i].dataValues.name%>
+        </fieldset>
+        <fieldset>
+            <label>Address: </label><%=rows[i].dataValues.addressten%>
+         </fieldset>
+        <fieldset>
+            <label>Unit: </label><%=rows[i].dataValues.unit%>
+        </fieldset>
+        <fieldset>
+            <label>Lease End: </label><%=rows[i].dataValues.leaseend%>
+        </fieldset>
+        <fieldset>
+            <label>Email: </label><%=rows[i].dataValues.email%>
+        </fieldset>
+        <fieldset>
+                <label>Phone: </label><%=rows[i].dataValues.phone%>
+            </fieldset>
+        
+        <form method="POST" action= "/edit/<%=rows[i].dataValues.id %>">
+        <button>Edit</button>
+        </form> 
+        <form method="POST" action= "/delete/<%=rows[i].dataValues.id %>">
+        <button>Delete</button>
+        </form> 
+        
+    <%} %>
+    </div>
