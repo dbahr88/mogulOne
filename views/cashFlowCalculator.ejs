@@ -6,7 +6,7 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Mogul One - Research</title>
+	<title>Mogul One - Test Research</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -72,12 +72,13 @@
 
 
         <div class="col-lg-4 col-md-6">
+            <form method="POST" action="/add" id="paymentcalc">
+
             <div class="card">
                 <div class="header">
                     <h4 class="title">Step 1: <br>Payment Calculator</h4>
                 </div>
                 <div class="content">
-                    <form id="paymentcalc">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -132,10 +133,9 @@
                             <button id="btn" class="btn btn-info btn-fill btn-wd">What's My Payment?</button>
                         </div>
                         <div class="clearfix"></div>
-                    </form>
                     <br>
                         <label class="labels1">Monthly Finance Payment: $</label>
-                        <input class="labels1" id="result"><br>
+                        <input name="financing" class="labels1" id="result"><br>
                         <label class="labels1">Cash Required for Deal: $</label>
                         <input name="downpayment" class="labels1" id="cashneeded">
                 </div>
@@ -148,8 +148,9 @@
             <div class="card">
                 <div class="header">
                     <h4 class="title">Step 2:<br>Quick Investment Analysis (Finance Included)</h4>
+                                                    <p class="category">Assumes 7% Vacancy</p>
+
                 </div>
-                <form type="POST">
                 <div class="content">
                         <div id="cashflowcalc">
                                 <div class="row">
@@ -190,7 +191,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Utilities</label>
-                                        <input id="utilities" type="number" class="form-control border-input" placeholder="$150" value="250">
+                                        <input name="utilities" id="utilities" type="number" class="form-control border-input" placeholder="$150" value="250">
                                     </div>
                                 </div>
                             </div>
@@ -203,12 +204,7 @@
                                         <input name="maintenance" id="maintenance" type="number" class="form-control border-input" placeholder="$200" value="250">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Vacancy</label>
-                                        <input name="vacancy" id="vacancy" type="number" class="form-control border-input" placeholder="$100" value="200">
-                                    </div>
-                                </div>
+
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Insurance</label>
@@ -239,94 +235,59 @@
                     </div>
                 </div>
             </div>
-        </form>
+    </form>
         </div>
+
+
 
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">Prospective Properties</h4>
-                                <p class="category">Assumes 5% Vacancy</p>
+                                <p class="category">Assumes 7% Vacancy</p>
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-striped">
                                     <thead>
                                     	<th>Address</th>
-                                    	<th>Price</th>
-                                    	<th>Down <br> Payment</th>
-                                        <th>Rents</th>
-                                        <th>Property<br>Tax</th>
-                                        <th>Utilities</th>
-                                        <th>Monthly<br>Cash Flow</th>
-                                        <th>Annual <br>Cash Flows</th>
-                                        <th>Cash-on-Cash Return</th>
-                                        <th>Cap Rate</th>
+                                    	<th>Price<br>($)</th>
+                                        <th>Down <br> Payment ($)</th>
+                                        <th>Principal/<br>Interest ($)</th>                                      
+                                        <th>Property<br>Tax($)</th>
+                                        <th>Rents ($)</th>
+                                        <th>Utilities ($)</th>
+                                        <th>Maintenance ($)</th>
+                                        <th>Monthly Cash<br> Flow ($)</th>
+                                        <th>Cash-on-Cash Return (%)</th>
+                                        <th>Cap Rate (%)</th>
+                                        <th>delete</th>
 
                                     </thead>
                                     <tbody>
+                                    <% for(i in rows) { %>
+
                                         <tr>
-                                        	<td>155 Benmont Ave</td>
-                                        	<td>$160,000</td>
-                                        	<td>$40,000</td>
-                                            <td>$3200</td>
-                                            <td>$400</td>
-                                            <td>$350</td>
-                                            <td>$968</td>
-                                            <td>$11,432</td>
-                                            <td>21%</td>
-                                            <td>14%</td>
+                                        	<td><%=rows[i].dataValues.address%></td>
+                                        	<td><%=rows[i].dataValues.price%></td>
+                                            <td><%=rows[i].dataValues.downpayment%></td>
+                                            <td><%=rows[i].dataValues.financing%></td>
+                                            <td><%=rows[i].dataValues.proptax%></td>                                         
+                                            <td><%=rows[i].dataValues.rents%></td>
+                                            <td><%=rows[i].dataValues.utilities%></td>
+                                            <td><%=rows[i].dataValues.maintenance%></td>
+                                            <td><%=rows[i].dataValues.cashflow%></td>
+                                            <td><%=rows[i].dataValues.cashoncash%></td>
+                                            <td><%=rows[i].dataValues.caprate%></td>
+                                            <td><form method="POST" action= "/delete/<%=rows[i].dataValues.id %>">
+                                            <button>Delete</button></td>
+                                            
                                         </tr>
-                                        <tr>
-                                        	<td>155 Benmont Ave</td>
-                                        	<td>$160,000</td>
-                                        	<td>$40,000</td>
-                                            <td>$3200</td>
-                                            <td>$400</td>
-                                            <td>$350</td>
-                                            <td>$968</td>
-                                            <td>$11,432</td>
-                                            <td>21%</td>
-                                            <td>14%</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>155 Benmont Ave</td>
-                                        	<td>$160,000</td>
-                                        	<td>$40,000</td>
-                                            <td>$3200</td>
-                                            <td>$400</td>
-                                            <td>$350</td>
-                                            <td>$968</td>
-                                            <td>$11,432</td>
-                                            <td>21%</td>
-                                            <td>14%</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>155 Benmont Ave</td>
-                                        	<td>$160,000</td>
-                                        	<td>$40,000</td>
-                                            <td>$3200</td>
-                                            <td>$400</td>
-                                            <td>$350</td>
-                                            <td>$968</td>
-                                            <td>$11,432</td>
-                                            <td>21%</td>
-                                            <td>14%</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>155 Benmont Ave</td>
-                                        	<td>$160,000</td>
-                                        	<td>$40,000</td>
-                                            <td>$3200</td>
-                                            <td>$400</td>
-                                            <td>$350</td>
-                                            <td>$968</td>
-                                            <td>$11,432</td>
-                                            <td>21%</td>
-                                            <td>14%</td>
-                                        </tr>
+                                        
+                                        <%} %>
+                                    
                                     </tbody>
                                 </table>
 

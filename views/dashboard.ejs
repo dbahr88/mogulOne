@@ -81,7 +81,7 @@
                             <div class="content">
                                 <div class="row">
                                     <div class="col-xs-5">
-                                        <div class="icon-big icon-warning text-center">
+                                        <div class="icon-big icon-info text-center">
                                             <i class="ti-server"></i>
                                         </div>
                                     </div>
@@ -116,7 +116,7 @@
                                     <div class="col-xs-7">
                                         <div class="numbers">
                                             <p>Cash Flow</p>
-                                            $2,777
+                                            <span>$</span><%=count%>
                                         </div>
                                     </div>
                                 </div>
@@ -135,67 +135,178 @@
                             <div class="content">
                                 <div class="row">
                                     <div class="col-xs-5">
-                                        <div class="icon-big icon-danger text-center">
-                                            <i class="ti-pulse"></i>
+                                        <div class="icon-big icon-success text-center">
+                                            <i class="ti-user"></i>
                                         </div>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Errors</p>
-                                            23
+                                            <p>Rent Roll</p>
+                                            <span>$</span><%=countrent%>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-timer"></i> In the last hour
+                                        <i class="ti-timer"></i> Monthly
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <div class="icon-big icon-info text-center">
-                                            <i class="ti-twitter-alt"></i>
+                    <a href="/tenants">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-xs-5">
+                                            <div class="icon-big icon-success text-center">
+                                                <i class="ti-money"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-7">
+                                            <div class="numbers">
+                                                <p>Portfolio Value</p>
+                                                <span>$</span><%=countprice%>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-                                            <p>Followers</p>
-                                            +45
+                                    <div class="footer">
+                                        <hr />
+                                        <div class="stats">
+                                            <i class="ti-reload"></i> Updated now
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                    <div class="stats">
-                                        <i class="ti-reload"></i> Updated now
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        </a>
+                    
+
+
+                    <!-- =======Second Row -->
+
+                    <div class="row">
+                            <div class="col-lg-3 col-sm-6">
+                                    <div class="card">
+                                        <div class="content">
+                                            <div class="row">
+                                                <div class="col-xs-5">
+                                                    <div class="icon-big icon-warning text-center">
+                                                        <i class="ti-hummer"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-7">
+                                                    <div class="numbers">
+                                                        <p>Maintenance</p>
+                                                        <span>$</span><%=countmaintenance%>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="footer">
+                                                <hr />
+                                                <div class="stats">
+                                                    <i class="ti-reload"></i> Updated now
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                            <a href="/performance">
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card">
+                                    <div class="content">
+                                        <div class="row">
+                                            <div class="col-xs-5">
+                                                <div class="icon-big icon-danger text-center">
+                                                    <i class="ti-money"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-7">
+                                                <div class="numbers">
+                                                    <p>Financing</p>
+                                                    <span>$</span><%=countfinancing%>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="footer">
+                                            <hr />
+                                            <div class="stats">
+                                                <i class="ti-calendar"></i> Last day
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </a>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card">
+                                    <div class="content">
+                                        <div class="row">
+                                            <div class="col-xs-5">
+                                                <div class="icon-big icon-danger text-center">
+                                                    <i class="ti-home"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-7">
+                                                <div class="numbers">
+                                                    <p>Property Tax</p>
+                                                    <span>$</span><%=countproptax%>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="footer">
+                                            <hr />
+                                            <div class="stats">
+                                                <i class="ti-timer"></i> Monthly
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card">
+                                    <div class="content">
+                                        <div class="row">
+                                            <div class="col-xs-5">
+                                                <div class="icon-big icon-warning text-center">
+                                                    <i class="ti-light-bulb"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-7">
+                                                <div class="numbers">
+                                                    <p>Utilities</p>
+                                                    <span>$</span><%=countutilities%>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="footer">
+                                            <hr />
+                                            <div class="stats">
+                                                <i class="ti-reload"></i> Updated now
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                 </div>
                 <div class="row">
 
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Users Behavior</h4>
-                                <p class="category">24 Hours performance</p>
+                                <h4 class="title">Portfolio Performance</h4>
+                                <p class="category">Expenses and </p>
                             </div>
                             <div class="content">
                                 <div id="chartHours" class="ct-chart"></div>
                                 <div class="footer">
                                     <div class="chart-legend">
-                                        <i class="fa fa-circle text-info"></i> Open
-                                        <i class="fa fa-circle text-danger"></i> Click
-                                        <i class="fa fa-circle text-warning"></i> Click Second Time
+                                        <i class="fa fa-circle text-info"></i> 14 Sage St
+                                        <i class="fa fa-circle text-danger"></i> 111 River St
+                                        <i class="fa fa-circle text-warning"></i> 28 Sage St
                                     </div>
                                     <hr>
                                     <div class="stats">
@@ -290,14 +401,14 @@
 
         	demo.initChartist();
 
-        	$.notify({
-            	icon: 'ti-home',
-            	message: "Welcome to <b>Mogul One.</b> Mission control for monitoring and expanding your real estate portolfio."
+        	// $.notify({
+            // 	icon: 'ti-home',
+            // 	message: "Welcome to <b>Mogul One.</b> Mission control for monitoring and expanding your real estate portolfio."
 
-            },{
-                type: 'success',
-                timer: 4000
-            });
+            // },{
+            //     type: 'success',
+            //     timer: 4000
+            // });
 
     	});
 	</script>

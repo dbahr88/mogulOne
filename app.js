@@ -55,18 +55,33 @@ const sequelize = new Sequelize('mogulone', postgres_user, postgres_pass, {
 const Prospective = sequelize.define('prospective', {
 	address: Sequelize.STRING,
 	price: Sequelize.INTEGER,
-	downpayment: Sequelize.INTEGER,
-	financing: Sequelize.INTEGER,
+	downpayment: Sequelize.FLOAT,
+	financing: Sequelize.FLOAT,
 	proptax: Sequelize.INTEGER,
 	insurance: Sequelize.INTEGER,
 	rents: Sequelize.INTEGER,
 	utilities: Sequelize.INTEGER,
 	maintenance: Sequelize.INTEGER,
-	cashflow: Sequelize.INTEGER,
-	cashoncash: Sequelize.INTEGER,
-	caprate: Sequelize.INTEGER
+	cashflow: Sequelize.FLOAT,
+	cashoncash: Sequelize.FLOAT,
+	caprate: Sequelize.FLOAT
 })
 
+// ======Owned properties table====(database collumn names)
+const Owned = sequelize.define('owned', {
+	address: Sequelize.STRING,
+	price: Sequelize.INTEGER,
+	downpayment: Sequelize.FLOAT,
+	financing: Sequelize.FLOAT,
+	proptax: Sequelize.INTEGER,
+	insurance: Sequelize.INTEGER,
+	rents: Sequelize.INTEGER,
+	utilities: Sequelize.INTEGER,
+	maintenance: Sequelize.INTEGER,
+	cashflow: Sequelize.FLOAT,
+	cashoncash: Sequelize.FLOAT,
+	caprate: Sequelize.FLOAT
+})
 // // Portfolio Talbe
 // const Portfolio = sequelize.define('portfolio', {
 // 	fname: Sequelize.STRING,
@@ -111,8 +126,8 @@ const sessionStore = new SequelizeStore({
     db: sequelize
   });
 
-sequelize.sync()
-sessionStore.sync();
+// sequelize.sync()
+// sessionStore.sync();
 
 // ---------------------------------------------------------
 // ======Boilerplate=============== 
@@ -249,32 +264,69 @@ app.get('/homepage', (req, res)=>{
 })
 
 // set routes to match EJS files
-app.get('/dashboard', (req,res)=>{
-	return res.render('dashboard')
+// PULLS SQL Data from database
+app.get('/dashboard', (req, res)=>{
+	Owned.findAll()
+	.then((rows)=>{
+		let count = 0
+		let countmaintenance = 0
+		let countrent = 0
+		let countprice = 0
+		let countfinancing = 0
+		let countproptax = 0
+		let countutilities = 0
+
+
+		
+		for(let i=0; i<rows.length; i++){
+			count = count + rows[i].dataValues.cashflow
+			countmaintenance = countmaintenance + rows[i].dataValues.maintenance
+			countrent = countrent + rows[i].dataValues.rents
+			countprice = countprice + rows[i].dataValues.price
+			countfinancing = countfinancing + rows[i].dataValues.financing
+			countproptax = countproptax + rows[i].dataValues.proptax
+			countutilities = countutilities + rows[i].dataValues.utilities
+
+
+		} 
+		console.log(count)
+		console.log(countmaintenance)
+		return res.render('dashboard',{count, countmaintenance, countrent, countprice, countfinancing, countproptax, countutilities, rows})
+	})
 })
 
 app.get('/user', (req,res)=>{
 	return res.render('user')
 })
 
-app.get('/research', (req,res)=>{
-	return res.render('cashFlowCalculator')
-})
-
-app.get('/performance', (req,res)=>{
-	return res.render('propertyperformance')
-})
-
-app.get('/tenants', (req,res)=>{
-	Tenant.findAll()
+// Catches get request for initializer
+app.get('/initializer',( req,res)=>{
+	Prospective.findAll()
 	.then((rows)=>{
-		return res.render('tenants', {rows})
-    })
-})
+		const arr = [67, 152, 193, 240, 800, 700,800, 800, 800];
+		// arr.push(rows[0].dataValues.financing)
+		// arr.push(rows[0].dataValues.proptax)
+		// arr.push(rows[0].dataValues.insurance)
+		// arr.push(rows[0].dataValues.insurance)
+		// arr.push(rows[0].dataValues.insurance)
+		// arr.push(rows[0].dataValues.insurance)
+		// arr.push(rows[0].dataValues.insurance)
+		// arr.push(rows[0].dataValues.insurance)
 
-app.get('/addtenant',(req,res)=>{
-	return res.render('addtenant')
+		
+		console.log(arr)
+		// console.log("==============",rows)
+		return res.send(arr)
+		// brings data from the backend to use oon the frontend through AJAX
+
+	})
 })
+// app.get('/research', (req,res)=>{
+// 	return res.render('cashFlowCalculator')
+// })
+
+
+
 
 app.get('/table', (req,res)=>{
 	return res.render('table')
@@ -300,15 +352,43 @@ app.get('/notifications', (req, res)=>{
 	return res.render('notifications')
 })
 
-app.get('/prospective', (req, res)=>{
-	return res.render('prospective')
+app.get('/research', (req, res)=>{
+	Prospective.findAll()
+	.then((rows)=>{
+		console.log("==============",rows)
+		return res.render('cashFlowCalculator',{rows})
+	})
 })
 
-app.post('/add',(req,res)=>{
-	console.log(req.body)
+app.get('/tenants', (req,res)=>{
+	Tenant.findAll()
+	.then((rows)=>{
+		return res.render('tenants', {rows})
+    })
+})
+
+app.get('/addtenant',(req,res)=>{
+	return res.render('addtenant')
+})
+
+
+// =======OWNED PROPERTIES ROUTES========
+
+
+app.get('/performance', (req, res)=>{
+	Owned.findAll()
+	.then((rows)=>{
+		console.log("==============",rows)
+		return res.render('propertyperformance',{rows})
+	})
+})
+
+// =====Performance/Owned Database=====
+app.post('/addowned',(req,res)=>{
 	// =========ADD RECORDS to the table======
-	sequelize.sync()
-	.then(()=> Prospective.create({
+	// sequelize.sync()
+	// .then(()=> 
+	Owned.create({
     address: req.body.address,
 	price: req.body.price,
 	downpayment: req.body.downpayment,
@@ -322,25 +402,70 @@ app.post('/add',(req,res)=>{
 	cashflow: req.body.cashflow,
 	cashoncash:req.body.cashoncash,
 	caprate:req.body.caprate,
-}))
+})
+.then(row=>{
+	return res.redirect('/performance')
+})
+})
+
+// DELETE Owned record
+app.post('/delete/:id', (req,res)=>{
+    let id = req.params.id
+// find the record you want deleted
+    Owned.findById(id)
+//    use 'destroy' method to delete
+    .then(row => row.destroy())
+    .then(()=>{
+        return res.redirect('/performance')
+    })
+})
+
+
+
+	// =========Prospective: ADD RECORDS to the table======
+
+app.post('/add',(req,res)=>{
+	// sequelize.sync()
+	// .then(()=> 
+	Prospective.create({
+    address: req.body.address,
+	price: req.body.price,
+	downpayment: req.body.downpayment,
+    financing: req.body.financing, 
+	proptax: req.body.proptax,
+	insurance: req.body.insurance,
+	rents: req.body.rents,
+	water: req.body.water,
+	utilities: req.body.utilities,
+	maintenance: req.body.maintenance,
+	cashflow: req.body.cashflow,
+	cashoncash:req.body.cashoncash,
+	caprate:req.body.caprate,
+})
+.then(row=>{
+	return res.redirect('/research')
+})
+})
+
+// DELETE prospective record
+app.post('/delete/:id', (req,res)=>{
+    let id = req.params.id
+// find the record you want deleted
+    Prospective.findById(id)
+//    use 'destroy' method to delete
+    .then(row => row.destroy())
+    .then(()=>{
+        return res.redirect('/research')
+    })
 })
 
 app.get('/paymentCalc', (req, res)=>{
-	return res.render('paymentCalc')
+	return res.render('research')
 })
 
-// ADD RECORDS check for the table, then add a record
-sequelize.sync()
-// .then(() => Tenant.create({
-//     name: 'name',
-//     addressten: 'addressten',
-//     unit: '1',
-// 	leaseend: 'leaseend',
-// 	email: 'email',
-// 	phone: 'phone',
-// }))
-// Find all
+// ==========================
 
+// Pass Tenant data to use on front end EJS
 
 app.get('/tenants',(req,res)=>{
     Tenant.findAll()
@@ -377,17 +502,21 @@ app.post('/delete/:id', (req,res)=>{
     .then(()=>{
         return res.redirect('/tenants')
     })
-
-    .then(row=>{
-        return res.redirect('/tenants')
-    })
 })
+
 
 
  // ---------------------------------------------------------
 //===Server ============
 // ---------------------------------------------------------
-
-app.listen(PORT, ()=>{
-	console.log("Server is running...")
+sequelize.sync()
+.then(function(){
+	app.listen(PORT, ()=>{
+		console.log("server running")
+	})
 })
+
+
+// app.listen(PORT, ()=>{
+// 	console.log("Server is running...")
+// })

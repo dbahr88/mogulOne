@@ -17,16 +17,27 @@ demo = {
     },
 
     initChartist: function(){
+      // This Ajax call searches a route
 
+        // $.ajax({
+        //   url:'/initializer',
+        //   success: function(result){
+        //     return result;
+        //   }
+
+        // })
+        // .then(function(result){
+          
+        // })
         var dataSales = {
-          labels: ['9:00AM', '12:00AM', '3:00PM', '6:00PM', '9:00PM', '12:00PM', '3:00AM', '6:00AM'],
+          labels: ['Principal/Interest', 'Tax/Insurance', 'Utilities', 'Maintenance', 'Rents', 'Management', 'Insurance', 'Vacancy'],
           series: [
-             [287, 385, 490, 562, 594, 626, 698, 895, 952],
-            [67, 152, 193, 240, 387, 435, 535, 642, 744],
-            [23, 113, 67, 108, 190, 239, 307, 410, 410]
+            [700, 400, 193, 240, 1000, 800, 535, 642, 120],
+            [455, 300, 193, 240, 900, 435, 535, 642, 100],
+            [255, 250, 67, 108, 600, 239, 307, 410, 85]
           ]
         };
-
+        
         var optionsSales = {
           lineSmooth: false,
           low: 0,
